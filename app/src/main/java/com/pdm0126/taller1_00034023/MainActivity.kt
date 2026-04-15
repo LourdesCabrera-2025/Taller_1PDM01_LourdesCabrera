@@ -19,6 +19,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -36,62 +40,68 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AndroidPediaByCabreraTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding)
-                            .background(
-                                brush = Brush.verticalGradient(
-                                    colors = listOf(
-                                        Color(0xFF3DDC84),
-                                        Color(0xFFF6F8F7)
-                                    )
-                                )
-                            )
+                App()
+            }
+        }
+    }
+}
+
+@Composable
+fun WelcomeScreen (onStartClick: () -> Unit) {
+    Scaffold(modifier = Modifier.fillMaxSize(),
+        containerColor = Color.Transparent) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            Color(0xFF3DDC84),
+                            Color(0xFFF6F8F7)
+                        )
+                    )
+                )
+                .padding(innerPadding)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(24.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(20.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.padding(24.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(24.dp),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
+                        Text(
+                            text = "AndroidPedia",
+                            fontSize = 28.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        Text(
+                            text = "¿Cuanto sabes de Android?",
+                            fontSize = 16.sp
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Text(text = "Lourdes Isabel Cabrera Clímaco")
+                        Text(text = "Carnet: 00034023")
+
+                        Spacer(modifier = Modifier.height(20.dp))
+
+                        Button(
+                            onClick = { },
+                            modifier = Modifier.fillMaxWidth()
                         ) {
-                            Card(
-                                modifier = Modifier.fillMaxWidth(),
-                                shape = RoundedCornerShape(20.dp)
-                            ) {
-                                Column(
-                                    modifier = Modifier.padding(24.dp),
-                                    horizontalAlignment = Alignment.CenterHorizontally
-                                ) {
-                                    Text(
-                                        text = "AndroidPedia",
-                                        fontSize = 28.sp,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                    Spacer(modifier = Modifier.height(8.dp))
-
-                                    Text(
-                                        text = "¿Cuanto sabes de Android?",
-                                        fontSize = 16.sp
-                                    )
-
-                                    Spacer(modifier = Modifier.height(16.dp))
-
-                                    Text(text = "Lourdes Isabel Cabrera Clímaco")
-                                    Text(text = "Carnet: 00034023")
-
-                                    Spacer(modifier = Modifier.height(20.dp))
-
-                                    Button(
-                                        onClick = { },
-                                        modifier = Modifier.fillMaxWidth()
-                                    ) {
-                                        Text("Comenzar Quiz")
-                                    }
-                                }
-                            }
+                            Text("Comenzar Quiz")
                         }
                     }
                 }
@@ -101,17 +111,20 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun QuizSreen () {
+
+    
 }
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    AndroidPediaByCabreraTheme {
-        Greeting("Android")
+fun App () {
+    var pantalla by remember { mutableStateOf("Inicio") }
+
+    when(pantalla) {
+        "Inicio" -> WelcomeScreen {pantalla = "quiz"}
+        "quiz" -> QuizSreen()
     }
+
 }
+
+
