@@ -15,14 +15,26 @@ val quizQuestion = listOf(
     ),
     Question(
         id = 2,
-        question = "¿Cuál es el nombre del robot verde que sirve como logo oficial de Androdid?",
+        question = "¿Cuál es el porcentaje aproximado de cuota de mercado mundial que ostenta Android frente a iOS",
         options = listOf(
-            "Andy",
-            "Bugdroid",
-            "Greeny",
-            "Droid"
+            "50% frente a 50%",
+            "60% frente a 40%",
+            "80% frente a 20%",
+            "95% frente a 5%"
         ),
-        correctAnswer = "BugDroid",
-        funFact = "Su diseñadora "
+        correctAnswer = "80% frente a 20%",
+        funFact = "Esta proporcion se ha mantenido bastante estable durante la ultima década , consolidando el duopolio móvil "
+    ),
+    Question(
+        id = 3,
+        question = "¿En que año se fundó originalmente la compañia  Android Inc.?",
+        options = listOf(
+            "1998",
+            "2003",
+            "2005",
+            "2008"
+        ),
+        correctAnswer = "2003",
+        funFact = "Android Inc. Fue fundada por Andy Rubin, Rich Miner, Nick Sears y Chris White"
     )
 )
