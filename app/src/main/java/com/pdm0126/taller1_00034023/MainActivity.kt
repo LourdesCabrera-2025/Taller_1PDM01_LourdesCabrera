@@ -98,7 +98,7 @@ fun WelcomeScreen (onStartClick: () -> Unit) {
                         Spacer(modifier = Modifier.height(20.dp))
 
                         Button(
-                            onClick = { },
+                            onClick = {onStartClick()},
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Text("Comenzar Quiz")
@@ -112,9 +112,36 @@ fun WelcomeScreen (onStartClick: () -> Unit) {
 
 @Composable
 fun QuizSreen () {
+    var preguntaActual by remember { mutableStateOf(0) }
+    val totalpreguntas = 3
+    val progreso = (preguntaActual + 1 ) / totalpreguntas.toFloat()
+        Scaffold(modifier = Modifier.fillMaxSize(),
+            containerColor = Color.Transparent) {innerPadding ->
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            Color(0xFF3DDC84),
+                            Color(0xFFF6F8F7)
+                        )
+                    )
+                )
+                .padding(innerPadding),
+                contentAlignment = Alignment.Center
 
-    
+            ){
+                Text(
+                    text = "Quiz de Cultura Android" ,
+                    fontSize = 8.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
+
 }
+
+
 
 @Composable
 fun App () {
